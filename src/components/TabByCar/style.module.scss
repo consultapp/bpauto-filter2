@@ -1,0 +1,64 @@
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 1;
+  background-color: white;
+  position: relative;
+}
+
+.field {
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  padding: 2px;
+
+  border-right-width: 0px;
+  border-right-style: none;
+  border-right-color: currentcolor;
+  border-right: 1px solid rgba(121, 121, 121, 0.4);
+
+  & > * {
+    cursor: pointer;
+  }
+
+  & input {
+    width: 100%;
+    padding-left: 10px;
+
+    text-align: left;
+    height: 38px;
+    background: #ffffff;
+    border-radius: 0;
+    overflow: hidden;
+
+    font-weight: 600;
+    color: #000000;
+    font-size: 15px;
+    line-height: 1;
+
+    border: 0;
+  }
+
+  & svg {
+    position: absolute;
+    right: 5px;
+  }
+}
+
+.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 44px;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  background-color: #ffffff;
+  border-radius: 0;
+  padding: 22px 18px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}

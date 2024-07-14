@@ -1,0 +1,25 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
+.tab {
+  width: max-content;
+  color: var(--main-bg-color);
+
+  font-weight: 600;
+  text-align: left;
+  font-size: 15px;
+  line-height: 2;
+  padding: 0 22px;
+  background: #f4f6f8;
+
+  margin: 0 7px 0 0;
+  cursor: pointer;
+}
+
+.active {
+  background-color: var(--main-bg-color-light);
+  color: white;
+}
