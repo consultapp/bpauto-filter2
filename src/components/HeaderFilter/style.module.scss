@@ -11,6 +11,8 @@
 .filter {
   display: grid;
   flex-grow: 1;
+
+  min-height: 100px;
 }
 
 .topLine {

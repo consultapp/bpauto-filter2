@@ -1,6 +1,6 @@
 import Logo from "@/assets/logo.png";
 
-import TabsController from "../TabsController/TabsController";
+import TabsController from "@/components/TabsController/TabsController";
 import SelectedTab from "../SelectedTab/SelectedTab";
 
 import styles from "./style.module.scss";
