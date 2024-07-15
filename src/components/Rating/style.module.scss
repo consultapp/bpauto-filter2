@@ -1,0 +1,21 @@
+.root {
+  font-size: small;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+
+  & a {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    gap: 2px;
+  }
+
+  & svg {
+    fill: #fe9f28;
+    stroke: #fe9f28;
+  }
+}

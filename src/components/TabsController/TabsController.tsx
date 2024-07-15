@@ -1,6 +1,7 @@
 import { useSetTab, useTab } from "@/store/ui/hooks";
 import classNames from "classnames";
 import styles from "./style.module.scss";
+import Rating from "../Rating/Rating";
 
 const tabs = ["По параметрам", "По товарам", "По артикулу"];
 
@@ -19,7 +20,9 @@ export default function TabsController() {
           {name}
         </div>
       ))}
-      <div className={styles.rating}>Рейтинг</div>
+      <div className={styles.rating}>
+        <Rating />
+      </div>
     </div>
   );
 }
