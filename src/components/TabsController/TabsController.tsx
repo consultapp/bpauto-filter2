@@ -19,6 +19,7 @@ export default function TabsController() {
           {name}
         </div>
       ))}
+      <div className={styles.rating}>Рейтинг</div>
     </div>
   );
 }

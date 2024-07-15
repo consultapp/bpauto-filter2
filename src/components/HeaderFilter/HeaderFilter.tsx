@@ -21,10 +21,7 @@ export default function HeaderFilter() {
       </div>
       <div className={styles.filter}>
         <div className={styles.tabsContainer}>
-          <div className={styles.topLine}>
-            <TabsController />
-            <div className={styles.rating}>Рейтинг</div>
-          </div>
+          <TabsController />
           <SelectedTab />
         </div>
       </div>

@@ -15,9 +15,8 @@
   min-height: 100px;
 }
 
-.topLine {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+@media screen and (max-width: "767px") {
+  .logo {
+    display: none;
+  }
 }

@@ -1,3 +1,5 @@
+@import-normalize;
+
 :root {
   --main-bg-color-dark: #115d5e;
   --main-bg-color: #1d7d7e;
@@ -7,4 +9,16 @@
   --second-color-normal: #d32f2f;
   --second-color-light: #ffebee;
   --second-color-dark: #b71c1c;
+
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
 }

@@ -1,9 +1,14 @@
 .fields {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-row: 1;
+  grid-template-columns: repeat(3, 1fr);
   background-color: white;
   position: relative;
+
+  @media screen and (max-width: "767px") {
+    & {
+      grid-template-columns: auto;
+    }
+  }
 }
 
 .field {
@@ -19,6 +24,15 @@
   border-right-style: none;
   border-right-color: currentcolor;
   border-right: 1px solid rgba(121, 121, 121, 0.4);
+
+  @media screen and (max-width: "767px") {
+    &:not(:last-child) {
+      border-bottom-width: 0px;
+      border-bottom-style: none;
+      border-bottom-color: currentcolor;
+      border-bottom: 1px solid rgba(121, 121, 121, 0.4);
+    }
+  }
 
   & > * {
     cursor: pointer;
@@ -46,19 +60,4 @@
     position: absolute;
     right: 5px;
   }
-}
-
-.content {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 40px;
-  max-height: 300px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-
-  background-color: #ffffff;
-  border-radius: 0;
-  padding: 22px 18px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
