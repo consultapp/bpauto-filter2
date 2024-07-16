@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import styles from "./style.module.scss";
-import SearchContent from "../SearchContent/SearchContent";
+import SearchContent from "../DroppingWindow/DroppingWindow";
 import CustomInput from "../ui/CustomInput/CustomInput";
 
 const fileds = ["mark", "model", "generation"];

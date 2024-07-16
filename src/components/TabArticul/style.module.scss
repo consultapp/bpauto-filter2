@@ -1,14 +1,17 @@
+.svg {
+  margin-right: 5px;
+  color: var(--main-bg-color-dark);
+  opacity: 0;
+}
 .rotate {
   animation-duration: 1s;
   animation-name: rotating;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+
+  opacity: 1;
 }
 
-.svg {
-  margin-right: 5px;
-  color: var(--main-bg-color-dark);
-}
 .root {
   background-color: white;
 }
@@ -20,4 +23,30 @@
   to {
     rotate: 360deg;
   }
+}
+
+.link {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--main-bg-color-dark);
+
+  & strong {
+    color: black;
+  }
+
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+
+  margin-bottom: 10px;
+}
+
+.red {
+  color: var(--second-color-normal);
+}
+.empty {
+  text-align: center;
+  color: var(--second-color-normal);
 }

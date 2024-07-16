@@ -5,7 +5,7 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
-  selectedTabIndex: 0,
+  selectedTabIndex: 2,
 };
 
 export const uiSlice = createSlice({
