@@ -1,0 +1,50 @@
+.field {
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  padding: 2px;
+
+  border-right-width: 0px;
+  border-right-style: none;
+  border-right-color: currentcolor;
+  border-right: 1px solid rgba(121, 121, 121, 0.4);
+
+  @media screen and (max-width: "767px") {
+    &:not(:last-child) {
+      border-bottom-width: 0px;
+      border-bottom-style: none;
+      border-bottom-color: currentcolor;
+      border-bottom: 1px solid rgba(121, 121, 121, 0.4);
+    }
+  }
+
+  & > * {
+    cursor: pointer;
+  }
+
+  & input {
+    width: 100%;
+    padding-left: 10px;
+
+    text-align: left;
+    height: 34px;
+    background: #ffffff;
+    border-radius: 0;
+    overflow: hidden;
+
+    font-weight: 600;
+    color: #000000;
+    font-size: 15px;
+    line-height: 1;
+
+    border: 0;
+  }
+
+  & svg {
+    position: absolute;
+    right: 5px;
+  }
+}

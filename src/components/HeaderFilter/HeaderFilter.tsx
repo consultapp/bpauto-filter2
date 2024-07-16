@@ -20,10 +20,8 @@ export default function HeaderFilter() {
         </a>
       </div>
       <div className={styles.filter}>
-        <div className={styles.tabsContainer}>
-          <TabsController />
-          <SelectedTab />
-        </div>
+        <TabsController />
+        <SelectedTab />
       </div>
     </div>
   );

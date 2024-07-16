@@ -5,5 +5,9 @@ type Props = {
 };
 
 export default function SearchContent({ children }: Props) {
-  return <div className={styles.root}>{children}</div>;
+  return (
+    <div style={{ position: "relative" }}>
+      <div className={styles.root}>{children}</div>
+    </div>
+  );
 }

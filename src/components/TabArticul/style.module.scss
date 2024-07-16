@@ -1,0 +1,23 @@
+.rotate {
+  animation-duration: 1s;
+  animation-name: rotating;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.svg {
+  margin-right: 5px;
+  color: var(--main-bg-color-dark);
+}
+.root {
+  background-color: white;
+}
+
+@keyframes rotating {
+  from {
+    rotate: 0;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
