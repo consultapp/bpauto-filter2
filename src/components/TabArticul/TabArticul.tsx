@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import styles from "./style.module.scss";
-import { API_URL, SEARCH_BY_ARTICUL } from "@/fixtures/consts";
+import { API_URL, SEARCH_BY_ARTICUL, SITE_URL } from "@/fixtures/consts";
 import SearchContent from "../DroppingWindow/DroppingWindow";
 import CustomInput from "../ui/CustomInput/CustomInput";
 import { LoaderCircle } from "lucide-react";
@@ -17,7 +17,7 @@ function checkAA(str: string) {
   return str;
 }
 
-function debounced(cb: (s: string) => void) {
+function debounced(cb: (value: string) => void) {
   let timer: number | null = null;
   return (value: string) => {
     if (timer) {
@@ -31,7 +31,7 @@ function debounced(cb: (s: string) => void) {
 
 export default function TabArticul() {
   const [value, setValue] = useState("");
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [results, setResults] = useState<
     { NAME: string; DETAIL_PAGE_URL: string; QUANTITY: string }[] | null
   >(null);
@@ -50,6 +50,7 @@ export default function TabArticul() {
           .then((data) => data.json())
           .then((data) => {
             console.log("data", data);
+            /$A|B{1}A{0,1}[0-9]{0-6}/.test("AA002345");
             setResults(data);
             setLoading(false);
           })
@@ -69,7 +70,9 @@ export default function TabArticul() {
     <>
       <div className={styles.root}>
         <CustomInput
+          className={styles.input}
           placeholder="Артикул"
+          autoFocus={true}
           value={value}
           max={8}
           svg={
@@ -78,8 +81,14 @@ export default function TabArticul() {
             />
           }
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setValue(checkAA(e.target.value));
-            // .replace(/(AA|BA)([0-9]{1,6})/g, "")
+            const str = checkAA(e.target.value);
+            // const regExp = new RegExp(/[AB]{1}A{0,1}[0-9]{0-6}/);
+            setResults(null);
+            setValue(str);
+          }}
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (results?.length && e.key === "Enter")
+              location.replace(SITE_URL + results[0].DETAIL_PAGE_URL);
           }}
         />
       </div>

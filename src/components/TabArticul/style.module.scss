@@ -30,17 +30,19 @@
   font-size: 14px;
   font-weight: 400;
   color: var(--main-bg-color-dark);
+  text-decoration: none;
+
+  & + & {
+    margin-top: 8px;
+  }
 
   & strong {
     color: black;
   }
 
-  text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
-
-  margin-bottom: 10px;
 }
 
 .red {
@@ -49,4 +51,8 @@
 .empty {
   text-align: center;
   color: var(--second-color-normal);
+}
+
+.input {
+  // max-width: 400px;
 }
