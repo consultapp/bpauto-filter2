@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import styles from "./style.module.scss";
-import { API_URL, SEARCH_BY_ARTICUL, SITE_URL } from "@/fixtures/consts";
+import { API_SEARCH_BY_ARTICUL_URL, SITE_URL } from "@/fixtures/consts";
 import SearchContent from "../DroppingWindow/DroppingWindow";
 import CustomInput from "../ui/CustomInput/CustomInput";
 import { LoaderCircle } from "lucide-react";
@@ -39,7 +39,7 @@ export default function TabArticul() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchSearch = useCallback(
     debounced((s: string) => {
-      const searchUrl = new URL(API_URL + SEARCH_BY_ARTICUL);
+      const searchUrl = new URL(API_SEARCH_BY_ARTICUL_URL);
       searchUrl.searchParams.set("s", s);
 
       if (s.length > 2) {

@@ -1,3 +1,8 @@
-// declare module "yandexScript" {
-//   export function yandexSearchScript(): void;
-// }
+export interface CarApiItem {
+  code: string;
+  id: string;
+  name: string;
+  parent: string | null;
+  parentId: string | null;
+  url: string;
+}
