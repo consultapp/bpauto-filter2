@@ -37,7 +37,7 @@
 
   text-align: left;
   height: 34px;
-  background: #ffffff;
+  // background: #ffffff;
   border-radius: 0;
   overflow: hidden;
 
@@ -51,4 +51,9 @@
 
 .input::placeholder {
   color: rgba(0, 0, 0, 0.8);
+}
+
+.disabled,
+.disabled > input {
+  background: var(--main-bg-color-light2);
 }

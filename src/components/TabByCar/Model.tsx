@@ -51,7 +51,7 @@ export default function Model() {
           <TogglerSvg tabName={CAR_TAB_STATES.model} />
         )
       }
-      disabled={isLoading || error || !opened}
+      disabled={isLoading || error || !data.length} //|| !opened
       onClick={clickHandler}
       onChange={(e) => {
         setFilter(e.target.value);

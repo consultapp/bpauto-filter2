@@ -34,11 +34,15 @@ const CustomInput = forwardRef(function CustomInput(
 ) {
   return (
     <div
-      className={classNames(className, styles.field)}
+      className={classNames(
+        className,
+        styles.field,
+        disabled && styles.disabled
+      )}
       onPointerDownCapture={onClick}
     >
       <input
-        className={styles.input}
+        className={classNames(styles.input)}
         disabled={disabled}
         type="text"
         autoFocus={autoFocus}

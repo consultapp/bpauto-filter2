@@ -53,7 +53,6 @@ export const useSelectCar = () => {
     modelId?: string;
     generationId?: string;
   }) => {
-    console.log("first", brandId, modelId, generationId);
     let tab = String(CAR_TAB_STATES.allClosed);
     if (brandId) {
       dispatch(setBrandId(brandId));
@@ -68,7 +67,7 @@ export const useSelectCar = () => {
       tab = CAR_TAB_STATES.generation;
     }
     if (generationId) {
-      dispatch(setModelId(generationId));
+      dispatch(setGenerationId(generationId));
       console.log("fours");
 
       tab = CAR_TAB_STATES.allClosed;

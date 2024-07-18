@@ -40,7 +40,7 @@ export default function Brand() {
           <TogglerSvg tabName={CAR_TAB_STATES.brand} />
         )
       }
-      disabled={isLoading || error || !opened}
+      disabled={isLoading || error || !data.length}
       onClick={clickHandler}
       onChange={(e) => {
         setFilter(e.target.value);

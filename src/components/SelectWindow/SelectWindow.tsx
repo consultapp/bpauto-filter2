@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import styles from "./style.module.scss";
 import SelectItem from "./SelectItem";
 import { useSelectCar } from "@/store/ui/hooks";
+import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
 
 export default function SelectWindow() {
   const opened = useSelector(uiCarTabStateSelector);
@@ -24,9 +25,12 @@ export default function SelectWindow() {
   const brandID = useSelector(uiBrandIdSelector);
   const modelId = useSelector(uiModelIdSelector);
 
-  const { data: brands = [] } = useGetBrandsQuery();
-  const { data: models = [] } = useGetModelsQuery(brandID);
-  const { data: generations = [] } = useGetGenerationsQuery(modelId);
+  const { data: brands = [], isLoading: L1 } = useGetBrandsQuery();
+  const { data: models = [], isLoading: L2 } = useGetModelsQuery(brandID);
+  const { data: generations = [], isLoading: L3 } =
+    useGetGenerationsQuery(modelId);
+
+  const loading = L1 || L2 || L3;
 
   let data = brands;
   switch (opened) {
@@ -53,7 +57,9 @@ export default function SelectWindow() {
 
   return (
     <DroppingWindow>
-      {filteredData.length ? (
+      {loading ? (
+        <LoaderSvg />
+      ) : filteredData.length ? (
         <div className={styles.grid}>
           {filteredData.map((item) => (
             <SelectItem

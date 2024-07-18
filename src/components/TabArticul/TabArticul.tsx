@@ -103,7 +103,8 @@ export default function TabArticul() {
                   href={DETAIL_PAGE_URL}
                 >
                   <strong>{value}</strong>
-                  {NAME.slice(value.length)}
+                  {NAME.slice(value.length)}{" "}
+                  <strong>(Остаток: {QUANTITY} шт.)</strong>
                 </a>
               ))
             : ""}

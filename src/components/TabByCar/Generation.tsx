@@ -7,7 +7,7 @@ import {
   uiGenerationIdSelector,
   uiModelIdSelector,
 } from "@/store/ui/selectors";
-import { useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { getItemById } from "@/functions/utils";
 import { useSetCarTabState, useSetFilter } from "@/store/ui/hooks";
 import { CAR_TAB_STATES } from "@/fixtures/consts";
@@ -26,6 +26,7 @@ export default function Generation() {
     () => getItemById(data, generationId),
     [data, generationId]
   );
+
   const setTab = useSetCarTabState();
 
   const opened =
@@ -37,10 +38,10 @@ export default function Generation() {
     if (input?.current) input.current.focus();
   }
 
-  const clickHandler = () => {
+  const clickHandler = useCallback(() => {
     if (!isLoading && data?.length)
       setTab(!opened ? CAR_TAB_STATES.generation : CAR_TAB_STATES.allClosed);
-  };
+  }, [data?.length, isLoading, opened, setTab]);
 
   return (
     <CustomInput
@@ -57,7 +58,7 @@ export default function Generation() {
           <TogglerSvg tabName={CAR_TAB_STATES.generation} />
         )
       }
-      disabled={isLoading || error || !opened}
+      disabled={isLoading || error || !data.length}
       onClick={clickHandler}
       onChange={(e) => {
         setFilter(e.target.value);
