@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import styles from "./style.module.scss";
+import { ForwardedRef, forwardRef } from "react";
 
 type Props = {
   placeholder?: string;
@@ -15,19 +16,22 @@ type Props = {
   disabled?: boolean;
 };
 
-export default function CustomInput({
-  className,
-  placeholder,
-  id,
-  onChange,
-  onKeyDown,
-  onClick,
-  svg,
-  value,
-  max,
-  autoFocus = false,
-  disabled = false,
-}: Props) {
+const CustomInput = forwardRef(function CustomInput(
+  {
+    className,
+    placeholder,
+    id,
+    onChange,
+    onKeyDown,
+    onClick,
+    svg,
+    value,
+    max,
+    autoFocus = false,
+    disabled = false,
+  }: Props,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   return (
     <div
       className={classNames(className, styles.field)}
@@ -44,8 +48,11 @@ export default function CustomInput({
         value={value}
         maxLength={max}
         onKeyDown={onKeyDown}
+        ref={ref}
       />
       {svg}
     </div>
   );
-}
+});
+
+export default CustomInput;

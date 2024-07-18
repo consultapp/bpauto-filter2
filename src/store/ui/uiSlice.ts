@@ -1,18 +1,7 @@
 import { CAR_TAB_STATES } from "@/fixtures/consts";
 import { createSlice } from "@reduxjs/toolkit";
 
-export const META_NAMES = [
-  "brandSectionCode",
-  "modelSectionCode",
-  "genSectionCode",
-];
-
-const startSectionCodes = META_NAMES.map((name) => {
-  return (document.getElementById(name) as HTMLMetaElement)?.name ?? "";
-});
-
 export interface CounterState {
-  startSectionCodes: string[];
   selectedTabIndex: number;
   selectedBrandId: string;
   selectedModelId: string;
@@ -24,7 +13,6 @@ export interface CounterState {
 
 const initialState: CounterState = {
   selectedTabIndex: 0,
-  startSectionCodes,
   selectedBrandId: "",
   selectedModelId: "",
   selectedGenerationId: "",
@@ -43,9 +31,12 @@ export const uiSlice = createSlice({
     },
     setBrandId: (state, { payload }) => {
       state.selectedBrandId = payload || "";
+      state.selectedModelId = "";
+      state.selectedGenerationId = "";
     },
     setModelId: (state, { payload }) => {
       state.selectedModelId = payload || "";
+      state.selectedGenerationId = "";
     },
     setGenerationId: (state, { payload }) => {
       state.selectedGenerationId = payload || "";
@@ -58,9 +49,6 @@ export const uiSlice = createSlice({
     setFilter: (state, { payload }) => {
       state.filter = payload;
     },
-    resetStartData: (state, { payload }) => {
-      state.startSectionCodes = payload;
-    },
   },
 });
 
@@ -71,5 +59,4 @@ export const {
   setGenerationId,
   setCarTabState,
   setFilter,
-  resetStartData,
 } = uiSlice.actions;

@@ -53,17 +53,23 @@ export default function SelectWindow() {
 
   return (
     <DroppingWindow>
-      <div className={styles.grid}>
-        {filteredData.map((item) => (
-          <SelectItem
-            key={item.id}
-            setCar={() => {
-              setCar({ [`${opened}Id`]: item.id });
-            }}
-            item={item}
-          />
-        ))}
-      </div>
+      {filteredData.length ? (
+        <div className={styles.grid}>
+          {filteredData.map((item) => (
+            <SelectItem
+              key={item.id}
+              setCar={() => {
+                setCar({ [`${opened}Id`]: item.id });
+              }}
+              item={item}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className={styles.noElements}>
+          Нет соответствующих фильру элементов.
+        </div>
+      )}
     </DroppingWindow>
   );
 }

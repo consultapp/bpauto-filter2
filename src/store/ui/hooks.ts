@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { uiTabSelector } from "./selectors";
 import {
-  resetStartData,
   setBrandId,
   setCarTabState,
   setFilter,
@@ -41,11 +40,6 @@ export const useSetCarTabState = () => {
 export const useSetFilter = () => {
   const dispatch = useDispatch();
   return (t: string) => dispatch(setFilter(t));
-};
-
-export const useResetStartData = () => {
-  const dispatch = useDispatch();
-  return (t: string[]) => dispatch(resetStartData(t));
 };
 
 export const useSelectCar = () => {

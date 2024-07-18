@@ -1,7 +1,7 @@
 .grid {
-  -moz-columns: 100px auto;
-  -webkit-columns: 100px auto;
-  columns: 100px auto;
+  // -moz-columns: 100px auto;
+  // -webkit-columns: 100px auto;
+  columns: 150px 3;
 }
 
 .anchor {
@@ -13,4 +13,9 @@
   &:focus-visible {
     background-color: var(--main-bg-color-light3);
   }
+}
+
+.noElements {
+  color: var(--second-color-normal);
+  text-align: center;
 }

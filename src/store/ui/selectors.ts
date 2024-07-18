@@ -14,9 +14,6 @@ export const uiModelIdSelector = (state: RootState) =>
 export const uiGenerationIdSelector = (state: RootState) =>
   uiSelector(state).selectedGenerationId;
 
-export const startSectionCodesSelector = (state: RootState) =>
-  uiSelector(state).startSectionCodes;
-
 export const uiCarTabStateSelector = (state: RootState) =>
   uiSelector(state).carTabState;
 

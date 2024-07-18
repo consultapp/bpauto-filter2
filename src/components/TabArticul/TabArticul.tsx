@@ -3,7 +3,6 @@ import styles from "./style.module.scss";
 import { API_SEARCH_BY_ARTICUL_URL, SITE_URL } from "@/fixtures/consts";
 import SearchContent from "../DroppingWindow/DroppingWindow";
 import CustomInput from "../ui/CustomInput/CustomInput";
-import { LoaderCircle } from "lucide-react";
 import classNames from "classnames";
 import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
 

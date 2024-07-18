@@ -5,7 +5,7 @@ type Props = { item: CarApiItem; setCar: () => void };
 
 export default function SelectItem({ item, setCar }: Props) {
   return (
-    <a
+    <div
       className={styles.anchor}
       onClick={(e) => {
         e.preventDefault();
@@ -13,6 +13,6 @@ export default function SelectItem({ item, setCar }: Props) {
       }}
     >
       {item.name}
-    </a>
+    </div>
   );
 }
