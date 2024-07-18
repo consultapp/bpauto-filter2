@@ -61,3 +61,9 @@
     right: 5px;
   }
 }
+
+.grid {
+  -moz-columns: 100px auto;
+  -webkit-columns: 100px auto;
+  columns: 100px auto;
+}

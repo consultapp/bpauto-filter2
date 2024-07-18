@@ -12,20 +12,24 @@ const startSectionCodes = META_NAMES.map((name) => {
 });
 
 export interface CounterState {
+  startSectionCodes: string[];
   selectedTabIndex: number;
-  selectedBrand: string;
-  selectedModel: string;
-  selectedGeneration: string;
+  selectedBrandId: string;
+  selectedModelId: string;
+  selectedGenerationId: string;
+
+  filter: string;
   carTabState: keyof typeof CAR_TAB_STATES;
 }
 
 const initialState: CounterState = {
   selectedTabIndex: 0,
+  startSectionCodes,
+  selectedBrandId: "",
+  selectedModelId: "",
+  selectedGenerationId: "",
 
-  selectedBrand: startSectionCodes[0] ?? null,
-  selectedModel: startSectionCodes[1] ?? null,
-  selectedGeneration: startSectionCodes[2] ?? null,
-
+  filter: "",
   carTabState: CAR_TAB_STATES.allClosed,
 };
 
@@ -35,9 +39,37 @@ export const uiSlice = createSlice({
   reducers: {
     setTab: (state, { payload }) => {
       state.selectedTabIndex = parseInt(payload) || 0;
+      state.carTabState = CAR_TAB_STATES.allClosed;
+    },
+    setBrandId: (state, { payload }) => {
+      state.selectedBrandId = payload || "";
+    },
+    setModelId: (state, { payload }) => {
+      state.selectedModelId = payload || "";
+    },
+    setGenerationId: (state, { payload }) => {
+      state.selectedGenerationId = payload || "";
+    },
+    setCarTabState: (state, { payload }) => {
+      if (payload !== CAR_TAB_STATES.allClosed) state.filter = "";
+
+      state.carTabState = payload || CAR_TAB_STATES.allClosed;
+    },
+    setFilter: (state, { payload }) => {
+      state.filter = payload;
+    },
+    resetStartData: (state, { payload }) => {
+      state.startSectionCodes = payload;
     },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { setTab } = uiSlice.actions;
+export const {
+  setTab,
+  setBrandId,
+  setModelId,
+  setGenerationId,
+  setCarTabState,
+  setFilter,
+  resetStartData,
+} = uiSlice.actions;

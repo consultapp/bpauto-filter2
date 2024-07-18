@@ -1,0 +1,16 @@
+.grid {
+  -moz-columns: 100px auto;
+  -webkit-columns: 100px auto;
+  columns: 100px auto;
+}
+
+.anchor {
+  display: block;
+  cursor: pointer;
+  padding: 5px;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--main-bg-color-light3);
+  }
+}

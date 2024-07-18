@@ -3,16 +3,22 @@ import { uiSlice } from "./ui/uiSlice";
 import { brandApi } from "./api/brand";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { modelApi } from "./api/model";
+import { generationApi } from "./api/generation";
 
 export const store = configureStore({
   reducer: {
     ui: uiSlice.reducer,
     [brandApi.reducerPath]: brandApi.reducer,
     [modelApi.reducerPath]: modelApi.reducer,
+    [generationApi.reducerPath]: generationApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(brandApi.middleware, modelApi.middleware),
+    getDefaultMiddleware().concat(
+      brandApi.middleware,
+      modelApi.middleware,
+      generationApi.middleware
+    ),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

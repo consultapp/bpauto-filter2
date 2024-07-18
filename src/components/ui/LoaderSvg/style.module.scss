@@ -1,0 +1,21 @@
+.root {
+  margin-right: 5px;
+  color: var(--main-bg-color-dark);
+  opacity: 0;
+
+  animation-duration: 1s;
+  animation-name: rotating;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  opacity: 1;
+}
+
+@keyframes rotating {
+  from {
+    rotate: 0;
+  }
+  to {
+    rotate: 360deg;
+  }
+}

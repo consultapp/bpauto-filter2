@@ -5,6 +5,7 @@ import SearchContent from "../DroppingWindow/DroppingWindow";
 import CustomInput from "../ui/CustomInput/CustomInput";
 import { LoaderCircle } from "lucide-react";
 import classNames from "classnames";
+import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
 
 function checkAA(str: string) {
   const arr = ["А", "а", "Ф", "ф", "a"];
@@ -13,7 +14,7 @@ function checkAA(str: string) {
       str = str.replace(item, "A");
     }
   });
-  console.log("str", str);
+
   return str;
 }
 
@@ -49,7 +50,6 @@ export default function TabArticul() {
         })
           .then((data) => data.json())
           .then((data) => {
-            console.log("data", data);
             /$A|B{1}A{0,1}[0-9]{0-6}/.test("AA002345");
             setResults(data);
             setLoading(false);
@@ -75,14 +75,9 @@ export default function TabArticul() {
           autoFocus={true}
           value={value}
           max={8}
-          svg={
-            <LoaderCircle
-              className={classNames(loading && styles.rotate, styles.svg)}
-            />
-          }
+          svg={loading ? <LoaderSvg /> : <></>}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const str = checkAA(e.target.value);
-            // const regExp = new RegExp(/[AB]{1}A{0,1}[0-9]{0-6}/);
             setResults(null);
             setValue(str);
           }}

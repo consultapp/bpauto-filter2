@@ -6,12 +6,13 @@ type Props = {
   id?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  spin?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   svg?: React.ReactElement;
   value?: string;
   max?: number;
   className?: string;
   autoFocus?: boolean;
+  disabled?: boolean;
 };
 
 export default function CustomInput({
@@ -20,21 +21,26 @@ export default function CustomInput({
   id,
   onChange,
   onKeyDown,
-  spin,
+  onClick,
   svg,
   value,
   max,
   autoFocus = false,
+  disabled = false,
 }: Props) {
   return (
-    <div className={classNames(className, styles.field)}>
+    <div
+      className={classNames(className, styles.field)}
+      onPointerDownCapture={onClick}
+    >
       <input
+        className={styles.input}
+        disabled={disabled}
         type="text"
         autoFocus={autoFocus}
         id={id}
         placeholder={placeholder}
         onChange={onChange}
-        className={classNames(spin && "spin")}
         value={value}
         maxLength={max}
         onKeyDown={onKeyDown}
