@@ -10,8 +10,6 @@ const startSectionCodes = META_NAMES.map((name) => {
   return (document.getElementById(name) as HTMLMetaElement)?.name ?? "";
 });
 
-console.log("startSectionCodes", startSectionCodes);
-
 export default function InitialDataLoad() {
   const setBrand = useSetBrand();
   const setModel = useSetModel();
@@ -41,8 +39,6 @@ export default function InitialDataLoad() {
   }, [brandId, models, setModel]);
 
   useEffect(() => {
-    console.log("first", generations);
-
     if (generations?.length && startSectionCodes[2] && modelId) {
       const id = getIdByCode(generations, startSectionCodes[2]);
       setGeneration(id);
