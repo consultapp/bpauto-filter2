@@ -1,3 +1,4 @@
+import { META_NAMES } from "@/fixtures/consts";
 import { getIdByCode } from "@/functions/utils";
 import { useGetBrandsQuery } from "@/store/api/brand";
 import { useGetGenerationsQuery } from "@/store/api/generation";
@@ -5,15 +6,11 @@ import { useGetModelsQuery } from "@/store/api/model";
 import { useSetBrand, useSetGeneration, useSetModel } from "@/store/ui/hooks";
 import { useEffect, useState } from "react";
 
-export const META_NAMES = [
-  "brandSectionCode",
-  "modelSectionCode",
-  "genSectionCode",
-];
-
 const startSectionCodes = META_NAMES.map((name) => {
   return (document.getElementById(name) as HTMLMetaElement)?.name ?? "";
 });
+
+console.log("startSectionCodes", startSectionCodes);
 
 export default function InitialDataLoad() {
   const setBrand = useSetBrand();
@@ -44,6 +41,8 @@ export default function InitialDataLoad() {
   }, [brandId, models, setModel]);
 
   useEffect(() => {
+    console.log("first", generations);
+
     if (generations?.length && startSectionCodes[2] && modelId) {
       const id = getIdByCode(generations, startSectionCodes[2]);
       setGeneration(id);

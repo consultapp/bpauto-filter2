@@ -11,3 +11,10 @@ export const CAR_TAB_STATES = {
   model: "model",
   generation: "generation",
 } as const;
+
+//
+export const META_NAMES = [
+  "brandSectionCode",
+  "modelSectionCode",
+  "genSectionCode",
+];

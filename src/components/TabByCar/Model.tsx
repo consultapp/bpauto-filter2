@@ -9,7 +9,7 @@ import {
 } from "@/store/ui/selectors";
 import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
 import { useSetCarTabState, useSetFilter } from "@/store/ui/hooks";
-import { useMemo, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import { getItemById } from "@/functions/utils";
 import { CAR_TAB_STATES } from "@/fixtures/consts";
 import TogglerSvg from "../ui/TogglerSvg/TogglerSvg";
@@ -29,14 +29,16 @@ export default function Model() {
   const filter = useSelector(uiFilterSelector);
   const setFilter = useSetFilter();
 
-  if (opened) {
-    if (input?.current) input.current.focus();
-  }
-
   const clickHandler = () => {
     if (!isLoading && data?.length)
       setTab(!opened ? CAR_TAB_STATES.model : CAR_TAB_STATES.allClosed);
   };
+
+  useLayoutEffect(() => {
+    if (opened) {
+      if (input?.current) input.current.focus();
+    }
+  }, [opened]);
 
   return (
     <CustomInput

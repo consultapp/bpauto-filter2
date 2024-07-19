@@ -63,6 +63,8 @@ export default function SelectWindow() {
             <SelectItem
               key={item.id}
               setCar={() => {
+                if (opened === CAR_TAB_STATES.generation)
+                  location.href = item.url;
                 setCar({ [`${opened}Id`]: item.id });
               }}
               item={item}
