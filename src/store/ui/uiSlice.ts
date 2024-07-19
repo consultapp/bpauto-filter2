@@ -11,8 +11,10 @@ export interface CounterState {
   carTabState: keyof typeof CAR_TAB_STATES;
 }
 
+const storedTabIndex = localStorage.getItem("storedTabIndex");
+
 const initialState: CounterState = {
-  selectedTabIndex: 0,
+  selectedTabIndex: parseInt(storedTabIndex ?? "0"),
   selectedBrandId: "",
   selectedModelId: "",
   selectedGenerationId: "",
@@ -26,7 +28,8 @@ export const uiSlice = createSlice({
   initialState,
   reducers: {
     setTab: (state, { payload }) => {
-      state.selectedTabIndex = parseInt(payload) || 0;
+      localStorage.setItem("storedTabIndex", payload ?? "0");
+      state.selectedTabIndex = parseInt(payload) ?? "0";
       state.carTabState = CAR_TAB_STATES.allClosed;
     },
     setBrandId: (state, { payload }) => {

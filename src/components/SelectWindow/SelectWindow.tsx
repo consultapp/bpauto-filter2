@@ -42,8 +42,6 @@ export default function SelectWindow() {
       break;
   }
 
-  console.log("DATA", opened, CAR_TAB_STATES.model === opened, data, models);
-
   const filteredData: CarApiItem[] = useMemo(() => {
     return ((data as CarApiItem[]) ?? []).filter((item) =>
       item.name.includes(filter)
