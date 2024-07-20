@@ -6,7 +6,7 @@ import {
   uiCarTabStateSelector,
   uiFilterSelector,
 } from "@/store/ui/selectors";
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import { getItemById } from "@/functions/utils";
 import { useSetCarTabState, useSetFilter } from "@/store/ui/hooks";
 import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
@@ -23,13 +23,22 @@ export default function Brand() {
   const filter = useSelector(uiFilterSelector);
   const setFilter = useSetFilter();
 
+  const input = useRef<HTMLInputElement>(null);
+
   const clickHandler = () => {
     if (!isLoading && data?.length)
       setTab(!opened ? CAR_TAB_STATES.brand : CAR_TAB_STATES.allClosed);
   };
 
+  useLayoutEffect(() => {
+    if (opened && input?.current) {
+      input.current.focus();
+    }
+  }, [opened]);
+
   return (
     <CustomInput
+      ref={input}
       label={!opened}
       placeholder={
         typeof brand === "object" && brand?.name ? brand?.name : "Марка"
