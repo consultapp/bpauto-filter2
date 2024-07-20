@@ -1,7 +1,14 @@
 .grid {
-  -moz-columns: 140px 3;
-  -webkit-columns: 140px 3;
-  columns: 140px 3;
+  -moz-columns: 140px 8;
+  -webkit-columns: 140px 8;
+  columns: 140px 8;
+  @media screen and (max-width: "767px") {
+    & {
+      -moz-columns: 130px 2;
+      -webkit-columns: 130px 2;
+      columns: 130px 2;
+    }
+  }
 }
 
 .anchor {
