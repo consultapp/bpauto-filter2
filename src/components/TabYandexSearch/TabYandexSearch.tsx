@@ -5,11 +5,13 @@ export default function TabYandexSearch() {
   return (
     <div
       className={classNames(
+        "ya-site-form",
+        "ya-site-form_inited_no",
         styles.ya_site_form,
         styles.ya_site_form_inited_no,
         styles.root
       )}
-      data-bem='{"action":"https://bpauto.ru/yandex-search-goods/","arrow":false,"bg":"transparent","fontsize":"15","fg":"#000000","language":"ru","logo":"rb","publicname":"","suggest":true,"target":"_self","tld":"ru","type":2,"usebigdictionary":false,"searchid":6977498,"input_fg":"#000000","input_bg":"#FFFFFF","input_fontStyle":"normal","input_fontWeight":"normal","input_placeholder":"","input_placeholderColor":"#000000","input_borderColor":"#cbcbcb","is_catalog":true}'
+      data-bem={`&quot;action&quot;:&quot;https://bpauto.ru/yandex-search-goods/&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:&quot;15&quot;,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_self&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:false,&quot;searchid&quot;:6977498,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#FFFFFF&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:&quot;&quot;,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#cbcbcb&quot;,&quot;is_catalog&quot;:true`}
     >
       <form
         action="//site.yandex.ru/search/site/catalog/"
