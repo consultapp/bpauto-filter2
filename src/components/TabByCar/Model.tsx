@@ -43,6 +43,7 @@ export default function Model() {
   return (
     <CustomInput
       ref={input}
+      label={!opened}
       placeholder={
         typeof model === "object" && model?.name ? model.name || "" : "Марка"
       }

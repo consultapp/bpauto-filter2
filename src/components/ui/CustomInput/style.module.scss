@@ -57,3 +57,21 @@
 .disabled > input {
   background: var(--main-bg-color-light2);
 }
+
+.label {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+
+  text-align: left;
+  height: 34px;
+  border-radius: 0;
+  overflow: hidden;
+
+  font-weight: 600;
+  color: #000000;
+  font-size: 14px;
+  line-height: 1;
+
+  border: 0;
+}

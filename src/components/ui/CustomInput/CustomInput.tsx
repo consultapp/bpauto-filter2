@@ -14,6 +14,7 @@ type Props = {
   className?: string;
   autoFocus?: boolean;
   disabled?: boolean;
+  label?: boolean;
 };
 
 const CustomInput = forwardRef(function CustomInput(
@@ -29,6 +30,7 @@ const CustomInput = forwardRef(function CustomInput(
     max,
     autoFocus = false,
     disabled = false,
+    label = false,
   }: Props,
   ref: ForwardedRef<HTMLInputElement>
 ) {
@@ -41,19 +43,24 @@ const CustomInput = forwardRef(function CustomInput(
       )}
       onPointerDownCapture={onClick}
     >
-      <input
-        className={classNames(styles.input)}
-        disabled={disabled}
-        type="text"
-        autoFocus={autoFocus}
-        id={id}
-        placeholder={placeholder}
-        onChange={onChange}
-        value={value}
-        maxLength={max}
-        onKeyDown={onKeyDown}
-        ref={ref}
-      />
+      {label ? (
+        <div className={classNames(styles.label)}>{placeholder}</div>
+      ) : (
+        <input
+          className={classNames(styles.input)}
+          disabled={disabled}
+          type="text"
+          autoFocus={autoFocus}
+          id={id}
+          placeholder={placeholder}
+          onChange={onChange}
+          value={value}
+          maxLength={max}
+          onKeyDown={onKeyDown}
+          ref={ref}
+        />
+      )}
+
       {svg}
     </div>
   );

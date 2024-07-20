@@ -94,8 +94,9 @@ export default function TabArticul() {
             </div>
           )}
           {results?.length
-            ? results.map(({ NAME, DETAIL_PAGE_URL, QUANTITY }) => (
+            ? results.map(({ NAME, DETAIL_PAGE_URL, QUANTITY }, i) => (
                 <a
+                  key={i}
                   className={classNames(
                     styles.link,
                     !parseInt(QUANTITY) && styles.red
