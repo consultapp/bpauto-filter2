@@ -47,6 +47,7 @@ export default function Generation() {
 
   return (
     <CustomInput
+      label={!opened}
       ref={input}
       placeholder={
         typeof generation === "object" && generation?.name

@@ -49,7 +49,6 @@ export default function TabArticul() {
         })
           .then((data) => data.json())
           .then((data) => {
-            /$A|B{1}A{0,1}[0-9]{0-6}/.test("AA002345");
             setResults(data);
             setLoading(false);
           })
@@ -104,8 +103,8 @@ export default function TabArticul() {
                   href={DETAIL_PAGE_URL}
                 >
                   <strong>{value}</strong>
-                  {NAME.slice(value.length)}{" "}
-                  <strong>(Остаток: {QUANTITY} шт.)</strong>
+                  {NAME.slice(value.length)}
+                  <strong>({QUANTITY}шт.)</strong>
                 </a>
               ))
             : ""}

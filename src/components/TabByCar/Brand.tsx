@@ -30,6 +30,7 @@ export default function Brand() {
 
   return (
     <CustomInput
+      label={!opened}
       placeholder={
         typeof brand === "object" && brand?.name ? brand?.name : "Марка"
       }
