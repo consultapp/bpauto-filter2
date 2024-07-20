@@ -1,4 +1,10 @@
+import { yandexSearchScript } from "@/functions/yandexScript";
+import { useEffect } from "react";
+
 export default function TabYandexSearch() {
+  useEffect(() => {
+    yandexSearchScript();
+  });
   return (
     <div
       className="ya-site-form ya-site-form_inited_no"
