@@ -2,12 +2,13 @@
   -moz-columns: 140px 8;
   -webkit-columns: 140px 8;
   columns: 140px 8;
-  @media screen and (max-width: "767px") {
-    & {
-      -moz-columns: 130px 2;
-      -webkit-columns: 130px 2;
-      columns: 130px 2;
-    }
+}
+
+@media screen and (max-width: "767px") {
+  .grid {
+    -moz-columns: 130px 2;
+    -webkit-columns: 130px 2;
+    columns: 130px 2;
   }
 }
 
