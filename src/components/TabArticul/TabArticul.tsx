@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import styles from "./style.module.scss";
-import { API_SEARCH_BY_ARTICUL_URL, SITE_URL } from "@/fixtures/consts";
+import { API_SEARCH_BY_ARTICUL_URL } from "@/fixtures/consts";
 import SearchContent from "../DroppingWindow/DroppingWindow";
 import CustomInput from "../ui/CustomInput/CustomInput";
 import classNames from "classnames";
@@ -81,7 +81,7 @@ export default function TabArticul() {
           }}
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
             if (results?.length && e.key === "Enter")
-              location.replace(SITE_URL + results[0].DETAIL_PAGE_URL);
+              location.href = results[0].DETAIL_PAGE_URL;
           }}
         />
       </div>

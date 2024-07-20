@@ -44,7 +44,7 @@ export default function SelectWindow() {
 
   const filteredData: CarApiItem[] = useMemo(() => {
     return ((data as CarApiItem[]) ?? []).filter((item) =>
-      item.name.startsWith(filter)
+      item.name.toLowerCase().startsWith(filter.toLocaleLowerCase())
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, filter, opened]);
