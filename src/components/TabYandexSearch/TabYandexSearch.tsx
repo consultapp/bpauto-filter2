@@ -13,7 +13,7 @@ const TabYandexSearch = memo(function TabYandexSearch() {
   }
   useEffect(() => {
     fetchHtml();
-  }, []);
+  }, [htmlFileString]);
 
   return <div dangerouslySetInnerHTML={{ __html: htmlFileString ?? "" }}></div>;
 });

@@ -10,7 +10,6 @@ import {
   uiModelIdSelector,
 } from "@/store/ui/selectors";
 import { CarApiItem } from "@/types";
-import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 import styles from "./style.module.scss";
@@ -42,12 +41,9 @@ export default function SelectWindow() {
       break;
   }
 
-  const filteredData: CarApiItem[] = useMemo(() => {
-    return ((data as CarApiItem[]) ?? []).filter((item) =>
-      item.name.toLowerCase().startsWith(filter.toLocaleLowerCase())
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, filter, opened]);
+  const filteredData: CarApiItem[] = ((data as CarApiItem[]) ?? []).filter(
+    (item) => item.name.toLowerCase().startsWith(filter.toLocaleLowerCase())
+  );
 
   if (opened === CAR_TAB_STATES.allClosed) {
     return;

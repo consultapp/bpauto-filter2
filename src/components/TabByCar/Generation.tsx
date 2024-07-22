@@ -7,7 +7,7 @@ import {
   uiGenerationIdSelector,
   uiModelIdSelector,
 } from "@/store/ui/selectors";
-import { useCallback, useLayoutEffect, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { getItemById } from "@/functions/utils";
 import { useSetCarTabState, useSetFilter } from "@/store/ui/hooks";
 import { CAR_TAB_STATES } from "@/fixtures/consts";
@@ -34,16 +34,14 @@ export default function Generation() {
   const filter = useSelector(uiFilterSelector);
   const setFilter = useSetFilter();
 
-  const clickHandler = useCallback(() => {
-    if (!isLoading && data?.length)
-      setTab(!opened ? CAR_TAB_STATES.generation : CAR_TAB_STATES.allClosed);
-  }, [data?.length, isLoading, opened, setTab]);
-
-  useLayoutEffect(() => {
-    if (opened && input?.current) {
-      input.current.focus();
-    }
-  }, [opened]);
+  const clickHandler = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      if (!isLoading && data?.length)
+        setTab(!opened ? CAR_TAB_STATES.generation : CAR_TAB_STATES.allClosed);
+    },
+    [data?.length, isLoading, opened, setTab]
+  );
 
   return (
     <CustomInput

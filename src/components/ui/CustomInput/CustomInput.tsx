@@ -1,13 +1,13 @@
 import classNames from "classnames";
 import styles from "./style.module.scss";
-import { ForwardedRef, forwardRef } from "react";
+import { forwardRef, useLayoutEffect, useRef } from "react";
 
 type Props = {
   placeholder?: string;
   id?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: (e: React.PointerEvent<HTMLDivElement>) => void;
   svg?: React.ReactElement;
   value?: string;
   max?: number;
@@ -17,23 +17,28 @@ type Props = {
   label?: boolean;
 };
 
-const CustomInput = forwardRef(function CustomInput(
-  {
-    className,
-    placeholder,
-    id,
-    onChange,
-    onKeyDown,
-    onClick,
-    svg,
-    value,
-    max,
-    autoFocus = false,
-    disabled = false,
-    label = false,
-  }: Props,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+const CustomInput = forwardRef(function CustomInput({
+  className,
+  placeholder,
+  id,
+  onChange,
+  onKeyDown,
+  onClick,
+  svg,
+  value,
+  max,
+  autoFocus = true,
+  disabled = false,
+  label = false,
+}: Props) {
+  const input = useRef<HTMLInputElement>(null);
+
+  useLayoutEffect(() => {
+    if (input?.current && autoFocus) {
+      input?.current.focus({ preventScroll: true });
+    }
+  });
+
   return (
     <div
       className={classNames(
@@ -50,17 +55,16 @@ const CustomInput = forwardRef(function CustomInput(
           className={classNames(styles.input)}
           disabled={disabled}
           type="text"
-          autoFocus={autoFocus}
+          // autoFocus={autoFocus}
           id={id}
           placeholder={placeholder}
           onChange={onChange}
           value={value}
           maxLength={max}
           onKeyDown={onKeyDown}
-          ref={ref}
+          ref={input}
         />
       )}
-
       {svg}
     </div>
   );
