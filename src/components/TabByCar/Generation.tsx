@@ -7,7 +7,7 @@ import {
   uiGenerationIdSelector,
   uiModelIdSelector,
 } from "@/store/ui/selectors";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo } from "react";
 import { getItemById } from "@/functions/utils";
 import { useSetCarTabState, useSetFilter } from "@/store/ui/hooks";
 import { CAR_TAB_STATES } from "@/fixtures/consts";
@@ -17,8 +17,6 @@ import TogglerSvg from "../ui/TogglerSvg/TogglerSvg";
 export default function Generation() {
   const modelId = useSelector(uiModelIdSelector);
   const generationId = useSelector(uiGenerationIdSelector);
-
-  const input = useRef<HTMLInputElement>(null);
 
   const { data, error, isLoading } = useGetGenerationsQuery(modelId);
 
@@ -46,7 +44,6 @@ export default function Generation() {
   return (
     <CustomInput
       label={!opened}
-      ref={input}
       placeholder={
         typeof generation === "object" && generation?.name
           ? generation.name || ""

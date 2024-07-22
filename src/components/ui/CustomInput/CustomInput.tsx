@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import styles from "./style.module.scss";
-import { forwardRef, useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 type Props = {
   placeholder?: string;
@@ -17,7 +17,7 @@ type Props = {
   label?: boolean;
 };
 
-const CustomInput = forwardRef(function CustomInput({
+function CustomInput({
   className,
   placeholder,
   id,
@@ -68,6 +68,6 @@ const CustomInput = forwardRef(function CustomInput({
       {svg}
     </div>
   );
-});
+}
 
 export default CustomInput;

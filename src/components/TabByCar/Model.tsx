@@ -9,7 +9,7 @@ import {
 } from "@/store/ui/selectors";
 import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
 import { useSetCarTabState, useSetFilter } from "@/store/ui/hooks";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo } from "react";
 import { getItemById } from "@/functions/utils";
 import { CAR_TAB_STATES } from "@/fixtures/consts";
 import TogglerSvg from "../ui/TogglerSvg/TogglerSvg";
@@ -20,8 +20,6 @@ export default function Model() {
   const { data, error, isLoading } = useGetModelsQuery(brandId);
 
   const model = useMemo(() => getItemById(data, modelId), [data, modelId]);
-
-  const input = useRef<HTMLInputElement>(null);
 
   const setTab = useSetCarTabState();
 
@@ -40,7 +38,6 @@ export default function Model() {
 
   return (
     <CustomInput
-      ref={input}
       label={!opened}
       placeholder={
         typeof model === "object" && model?.name ? model.name || "" : "Марка"

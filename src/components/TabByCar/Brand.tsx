@@ -6,7 +6,7 @@ import {
   uiCarTabStateSelector,
   uiFilterSelector,
 } from "@/store/ui/selectors";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo } from "react";
 import { getItemById } from "@/functions/utils";
 import { useSetCarTabState, useSetFilter } from "@/store/ui/hooks";
 import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
@@ -23,8 +23,6 @@ export default function Brand() {
   const filter = useSelector(uiFilterSelector);
   const setFilter = useSetFilter();
 
-  const input = useRef<HTMLInputElement>(null);
-
   const clickHandler = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
       e.preventDefault();
@@ -36,7 +34,6 @@ export default function Brand() {
 
   return (
     <CustomInput
-      ref={input}
       label={!opened}
       placeholder={
         typeof brand === "object" && brand?.name ? brand?.name : "Марка"
