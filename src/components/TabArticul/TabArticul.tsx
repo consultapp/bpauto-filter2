@@ -29,12 +29,12 @@ function debounced(cb: (value: string) => void) {
   };
 }
 
+type Result = { NAME: string; DETAIL_PAGE_URL: string; QUANTITY: string };
+
 export default function TabArticul() {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [results, setResults] = useState<
-    { NAME: string; DETAIL_PAGE_URL: string; QUANTITY: string }[] | null
-  >(null);
+  const [results, setResults] = useState<Result[] | null>(null);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchSearch = useCallback(
@@ -55,6 +55,8 @@ export default function TabArticul() {
           .catch((e) => {
             console.error("Fetch error.", e);
           });
+      } else {
+        setResults(null);
       }
     }),
     [setValue, setLoading]
@@ -72,11 +74,11 @@ export default function TabArticul() {
           placeholder="Артикул"
           autoFocus={true}
           value={value}
-          max={8}
+          max={20}
           svg={loading ? <LoaderSvg /> : <></>}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const str = checkAA(e.target.value);
-            setResults(null);
+            // setResults(null);
             setValue(str);
           }}
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -85,15 +87,18 @@ export default function TabArticul() {
           }}
         />
       </div>
-      {results ? (
+      {value && (
         <SearchContent>
-          {results?.length === 0 && (
+          {results?.length === 0 && !loading && (
             <div className={styles.empty}>
               По вашему запросу ничего не найдено.
             </div>
           )}
-          {results?.length
-            ? results.map(({ NAME, DETAIL_PAGE_URL, QUANTITY }, i) => (
+          {Boolean(results?.length) &&
+            !loading &&
+            results?.map(function (result: Result, i: number) {
+              const { NAME, DETAIL_PAGE_URL, QUANTITY } = result;
+              return (
                 <a
                   key={i}
                   className={classNames(
@@ -101,16 +106,24 @@ export default function TabArticul() {
                     !parseInt(QUANTITY) && styles.red
                   )}
                   href={DETAIL_PAGE_URL}
-                >
-                  <strong>{value}</strong>
-                  {NAME.slice(value.length)}
-                  <strong>({QUANTITY}шт.)</strong>
-                </a>
-              ))
-            : ""}
+                  dangerouslySetInnerHTML={{
+                    __html: `${NAME.replace(
+                      value,
+                      `<strong>${value}</strong>`
+                    )} <strong>(${QUANTITY}шт.)</strong>`,
+                  }}
+                ></a>
+              );
+            })}
+          {loading && (
+            <div className={styles.center}>
+              <LoaderSvg size={36} />
+            </div>
+          )}
+          {value.length > 0 && value.length <= 2 && (
+            <div className={styles.center}>Введите больше двух символов.</div>
+          )}
         </SearchContent>
-      ) : (
-        ""
       )}
     </>
   );

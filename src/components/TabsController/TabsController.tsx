@@ -3,7 +3,7 @@ import classNames from "classnames";
 import styles from "./style.module.scss";
 import Rating from "../Rating/Rating";
 
-const tabs = ["По параметрам", "По товарам", "По артикулу"];
+const tabs = ["По параметрам", "По артикулу"];
 
 export default function TabsController() {
   const tab = useTab();

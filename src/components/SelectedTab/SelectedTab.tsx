@@ -1,7 +1,7 @@
 import { useTab } from "@/store/ui/hooks";
 import TabByCar from "../TabByCar/TabByCar";
 import styles from "./style.module.scss";
-import TabYandexSearch from "../TabYandexSearch/TabYandexSearch";
+// import TabYandexSearch from "../TabYandexSearch/TabYandexSearch";
 import TabArticul from "../TabArticul/TabArticul";
 
 export default function SelectedTab() {
@@ -9,8 +9,8 @@ export default function SelectedTab() {
   return (
     <div className={styles.root}>
       {tab === 0 && <TabByCar />}
-      {tab === 1 && <TabYandexSearch />}
-      {tab === 2 && <TabArticul />}
+      {/* {tab === 1 && <TabYandexSearch />} */}
+      {tab === 1 && <TabArticul />}
     </div>
   );
 }

@@ -30,6 +30,8 @@
   color: var(--second-color-normal);
 }
 
-.input {
-  // max-width: 400px;
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
