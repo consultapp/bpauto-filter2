@@ -1,4 +1,4 @@
-export interface CarApiItem {
+interface CarApiItem {
   code: string;
   id: string;
   name: string;
@@ -6,3 +6,12 @@ export interface CarApiItem {
   parentId: string | null;
   url: string;
 }
+
+declare const window: {
+  SOCIAL_RATING_FILTER: {
+    [key in "avito" | "yandex"]: {
+      rating: number;
+      link: string;
+    };
+  };
+};

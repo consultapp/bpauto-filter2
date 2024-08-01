@@ -1,5 +1,3 @@
-import { CarApiItem } from "@/types";
-
 export function getIdByCode(data: CarApiItem[], code: string) {
   return (
     (data as CarApiItem[]).filter((item) => item.code === code)[0]?.id || ""

@@ -1,4 +1,3 @@
-import { CarApiItem } from "@/types";
 import styles from "./style.module.scss";
 import { useContext } from "react";
 import { RootContex } from "../HeaderFilter/HeaderFilter";

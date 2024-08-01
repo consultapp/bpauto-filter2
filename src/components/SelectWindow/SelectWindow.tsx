@@ -9,7 +9,6 @@ import {
   uiFilterSelector,
   uiModelIdSelector,
 } from "@/store/ui/selectors";
-import { CarApiItem } from "@/types";
 import { useSelector } from "react-redux";
 
 import styles from "./style.module.scss";

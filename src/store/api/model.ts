@@ -1,5 +1,4 @@
 import { API_URL } from "@/fixtures/consts";
-import { CarApiItem } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define our single API slice object
