@@ -18,3 +18,14 @@ export const META_NAMES = [
   "modelSectionCode",
   "genSectionCode",
 ];
+
+export const SOCIAL_RATING_FILTER = {
+  avito: {
+    rating: "4,9",
+    link: "https://www.avito.ru/brands/bpauto",
+  },
+  yandex: {
+    rating: "4,9",
+    link: "https://yandex.ru/profile/1060062940",
+  },
+};
