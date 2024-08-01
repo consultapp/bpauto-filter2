@@ -7,11 +7,11 @@ interface CarApiItem {
   url: string;
 }
 
-declare const window: {
+declare interface Window {
   SOCIAL_RATING_FILTER: {
     [key in "avito" | "yandex"]: {
-      rating: number;
+      rating: string;
       link: string;
     };
   };
-};
+}
