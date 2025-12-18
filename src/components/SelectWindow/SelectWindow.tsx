@@ -1,51 +1,51 @@
-import DroppingWindow from "@/components/DroppingWindow/DroppingWindow";
-import { CAR_TAB_STATES } from "@/fixtures/consts";
-import { useGetBrandsQuery } from "@/store/api/brand";
-import { useGetGenerationsQuery } from "@/store/api/generation";
-import { useGetModelsQuery } from "@/store/api/model";
+import DroppingWindow from '@/components/DroppingWindow/DroppingWindow'
+import { CAR_TAB_STATES } from '@/fixtures/consts'
+import { useGetBrandsQuery } from '@/store/api/brand'
+import { useGetGenerationsQuery } from '@/store/api/generation'
+import { useGetModelsQuery } from '@/store/api/model'
 import {
   uiBrandIdSelector,
   uiCarTabStateSelector,
   uiFilterSelector,
   uiModelIdSelector,
-} from "@/store/ui/selectors";
-import { useSelector } from "react-redux";
+} from '@/store/ui/selectors'
+import { useSelector } from 'react-redux'
 
-import styles from "./style.module.scss";
-import SelectItem from "./SelectItem";
-import { useSelectCar } from "@/store/ui/hooks";
-import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
+import styles from './style.module.scss'
+import SelectItem from './SelectItem'
+import { useSelectCar } from '@/store/ui/hooks'
+import LoaderSvg from '../ui/LoaderSvg/LoaderSvg'
 
 export default function SelectWindow() {
-  const opened = useSelector(uiCarTabStateSelector);
-  const filter = useSelector(uiFilterSelector);
-  const setCar = useSelectCar();
-  const brandID = useSelector(uiBrandIdSelector);
-  const modelId = useSelector(uiModelIdSelector);
+  const opened = useSelector(uiCarTabStateSelector)
+  const filter = useSelector(uiFilterSelector)
+  const setCar = useSelectCar()
+  const brandID = useSelector(uiBrandIdSelector)
+  const modelId = useSelector(uiModelIdSelector)
 
-  const { data: brands = [], isLoading: L1 } = useGetBrandsQuery();
-  const { data: models = [], isLoading: L2 } = useGetModelsQuery(brandID);
+  const { data: brands = [], isLoading: L1 } = useGetBrandsQuery()
+  const { data: models = [], isLoading: L2 } = useGetModelsQuery(brandID)
   const { data: generations = [], isLoading: L3 } =
-    useGetGenerationsQuery(modelId);
+    useGetGenerationsQuery(modelId)
 
-  const loading = L1 || L2 || L3;
+  const loading = L1 || L2 || L3
 
-  let data = brands;
+  let data = brands
   switch (opened) {
     case CAR_TAB_STATES.model:
-      data = models;
-      break;
+      data = models
+      break
     case CAR_TAB_STATES.generation:
-      data = generations;
-      break;
+      data = generations
+      break
   }
 
   const filteredData: CarApiItem[] = ((data as CarApiItem[]) ?? []).filter(
     (item) => item.name.toLowerCase().startsWith(filter.toLocaleLowerCase())
-  );
+  )
 
   if (opened === CAR_TAB_STATES.allClosed) {
-    return;
+    return
   }
 
   return (
@@ -59,8 +59,8 @@ export default function SelectWindow() {
               key={item.id}
               setCar={() => {
                 if (opened === CAR_TAB_STATES.generation)
-                  location.href = item.url;
-                setCar({ [`${opened}Id`]: item.id });
+                  location.href = item.url
+                setCar({ [`${opened}Id`]: item.id })
               }}
               item={item}
             />
@@ -68,9 +68,9 @@ export default function SelectWindow() {
         </div>
       ) : (
         <div className={styles.noElements}>
-          Нет соответствующих фильру элементов.
+          Нет соответствующих фильтру элементов.
         </div>
       )}
     </DroppingWindow>
-  );
+  )
 }

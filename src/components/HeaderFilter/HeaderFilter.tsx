@@ -7,7 +7,7 @@ import SelectedTab from '../SelectedTab/SelectedTab'
 import styles from './style.module.scss'
 import { createContext, useCallback, useMemo, useRef } from 'react'
 
-export const RootContex = createContext(() => {})
+export const RootContext = createContext(() => {})
 export default function HeaderFilter() {
   const root = useRef<HTMLDivElement>(null)
 
@@ -25,7 +25,7 @@ export default function HeaderFilter() {
   }, [root])
 
   return (
-    <RootContex.Provider value={scrollToRoot}>
+    <RootContext.Provider value={scrollToRoot}>
       <div className={styles.root} ref={root}>
         <div className={styles.logo}>
           <a href="/">
@@ -37,6 +37,6 @@ export default function HeaderFilter() {
           <SelectedTab />
         </div>
       </div>
-    </RootContex.Provider>
+    </RootContext.Provider>
   )
 }

@@ -1,21 +1,21 @@
-import classNames from "classnames";
-import styles from "./style.module.scss";
-import { useLayoutEffect, useRef } from "react";
+import classNames from 'classnames'
+import styles from './style.module.scss'
+import { useLayoutEffect, useRef } from 'react'
 
 type Props = {
-  placeholder?: string;
-  id?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onClick?: (e: React.PointerEvent<HTMLDivElement>) => void;
-  svg?: React.ReactElement;
-  value?: string;
-  max?: number;
-  className?: string;
-  autoFocus?: boolean;
-  disabled?: boolean;
-  label?: boolean;
-};
+  placeholder?: string
+  id?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onClick?: (e: React.PointerEvent<HTMLDivElement>) => void
+  svg?: React.ReactElement
+  value?: string
+  max?: number
+  className?: string
+  autoFocus?: boolean
+  disabled?: boolean
+  label?: boolean
+}
 
 function CustomInput({
   className,
@@ -31,13 +31,13 @@ function CustomInput({
   disabled = false,
   label = false,
 }: Props) {
-  const input = useRef<HTMLInputElement>(null);
+  const input = useRef<HTMLInputElement>(null)
 
   useLayoutEffect(() => {
     if (input?.current && autoFocus) {
-      input?.current.focus({ preventScroll: true });
+      input?.current.focus({ preventScroll: true })
     }
-  });
+  }, [autoFocus])
 
   return (
     <div
@@ -67,7 +67,7 @@ function CustomInput({
       )}
       {svg}
     </div>
-  );
+  )
 }
 
-export default CustomInput;
+export default CustomInput
