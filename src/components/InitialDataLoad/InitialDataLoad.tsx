@@ -7,7 +7,7 @@ import { useSetBrand, useSetGeneration, useSetModel } from "@/store/ui/hooks";
 import { useEffect, useState } from "react";
 
 const startSectionCodes = META_NAMES.map((name) => {
-  return (document.getElementById(name) as HTMLMetaElement)?.name ?? "";
+  return (document.getElementById(name) as HTMLMetaElement)?.content ?? "";
 });
 
 export default function InitialDataLoad() {

@@ -29,7 +29,7 @@ export const uiSlice = createSlice({
   reducers: {
     setTab: (state, { payload }) => {
       localStorage.setItem("storedTabIndex", payload ?? "0");
-      state.selectedTabIndex = parseInt(payload) ?? "0";
+      state.selectedTabIndex = parseInt(payload) ?? 0;
       state.carTabState = CAR_TAB_STATES.allClosed;
     },
     setBrandId: (state, { payload }) => {

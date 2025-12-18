@@ -40,7 +40,7 @@ export default function Model() {
     <CustomInput
       label={!opened}
       placeholder={
-        typeof model === "object" && model?.name ? model.name || "" : "Марка"
+        typeof model === "object" && model?.name ? model.name || "" : "Модель"
       }
       svg={
         isLoading ? (

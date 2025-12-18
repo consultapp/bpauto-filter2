@@ -54,6 +54,7 @@ export default function TabArticul() {
           })
           .catch((e) => {
             console.error("Fetch error.", e);
+            setLoading(false);
           });
       } else {
         setResults(null);
