@@ -1,4 +1,4 @@
-import { useSetTab, useTab } from "@/store/ui/hooks";
+import { useSetTab, useTab } from "@/context/filterHooks";
 import classNames from "classnames";
 import styles from "./style.module.scss";
 import Rating from "../Rating/Rating";

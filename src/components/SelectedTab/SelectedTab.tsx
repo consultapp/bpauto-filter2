@@ -1,4 +1,4 @@
-import { useTab } from "@/store/ui/hooks";
+import { useTab } from "@/context/filterHooks";
 import TabByCar from "../TabByCar/TabByCar";
 import styles from "./style.module.scss";
 // import TabYandexSearch from "../TabYandexSearch/TabYandexSearch";

@@ -1,14 +1,13 @@
 import HeaderFilter from "./components/HeaderFilter/HeaderFilter";
-import { Provider } from "react-redux";
-import { store } from "./store/index.ts";
 import InitialDataLoad from "./components/InitialDataLoad/InitialDataLoad.tsx";
+import { FilterProvider } from "@/context/FilterProvider";
 
 function App() {
   return (
-    <Provider store={store}>
+    <FilterProvider>
       <InitialDataLoad />
       <HeaderFilter />
-    </Provider>
+    </FilterProvider>
   );
 }
 

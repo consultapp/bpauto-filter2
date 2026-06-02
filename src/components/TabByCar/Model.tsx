@@ -1,39 +1,33 @@
-import CustomInput from "../ui/CustomInput/CustomInput";
-import { useGetModelsQuery } from "@/store/api/model";
-import { useSelector } from "react-redux";
-import {
-  uiBrandIdSelector,
-  uiCarTabStateSelector,
-  uiFilterSelector,
-  uiModelIdSelector,
-} from "@/store/ui/selectors";
-import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
-import { useSetCarTabState, useSetFilter } from "@/store/ui/hooks";
-import { useCallback, useMemo } from "react";
-import { getItemById } from "@/functions/utils";
+import { useModels } from "@/api/sections";
 import { CAR_TAB_STATES } from "@/fixtures/consts";
+import { getItemById } from "@/functions/utils";
+import { useFilter } from "@/context/filterHooks";
+import { useSetCarTabState, useSetFilter } from "@/context/filterHooks";
+import { useCallback, useMemo } from "react";
+import CustomInput from "../ui/CustomInput/CustomInput";
+import LoaderSvg from "../ui/LoaderSvg/LoaderSvg";
 import TogglerSvg from "../ui/TogglerSvg/TogglerSvg";
 
 export default function Model() {
-  const brandId = useSelector(uiBrandIdSelector);
-  const modelId = useSelector(uiModelIdSelector);
-  const { data, error, isLoading } = useGetModelsQuery(brandId);
-
-  const model = useMemo(() => getItemById(data, modelId), [data, modelId]);
-
+  const { selectedBrandId, selectedModelId, carTabState, filter } =
+    useFilter();
   const setTab = useSetCarTabState();
-
-  const opened = useSelector(uiCarTabStateSelector) === CAR_TAB_STATES.model;
-  const filter = useSelector(uiFilterSelector);
   const setFilter = useSetFilter();
+
+  const { data, error, isLoading } = useModels(selectedBrandId);
+  const model = useMemo(
+    () => getItemById(data, selectedModelId),
+    [data, selectedModelId]
+  );
+  const opened = carTabState === CAR_TAB_STATES.model;
 
   const clickHandler = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
       e.preventDefault();
-      if (!isLoading && data?.length)
+      if (!isLoading && data.length)
         setTab(opened ? CAR_TAB_STATES.allClosed : CAR_TAB_STATES.model);
     },
-    [data?.length, isLoading, opened, setTab]
+    [data.length, isLoading, opened, setTab]
   );
 
   return (
@@ -49,7 +43,7 @@ export default function Model() {
           <TogglerSvg tabName={CAR_TAB_STATES.model} />
         )
       }
-      disabled={isLoading || error || !data.length} //|| !opened
+      disabled={isLoading || Boolean(error) || !data.length}
       onClick={clickHandler}
       onChange={(e) => {
         setFilter(e.target.value);
