@@ -14,7 +14,10 @@ async function fetchSections(path: string): Promise<CarApiItem[]> {
   return toList(await res.json());
 }
 
-const brandsCache = { data: null as CarApiItem[] | null, promise: null as Promise<CarApiItem[]> | null };
+const brandsCache = {
+  data: null as CarApiItem[] | null,
+  promise: null as Promise<CarApiItem[]> | null,
+};
 const modelsCache = new Map<string, CarApiItem[]>();
 const modelsPending = new Map<string, Promise<CarApiItem[]>>();
 const generationsCache = new Map<string, CarApiItem[]>();
@@ -77,109 +80,82 @@ export type SectionsQueryResult = {
   error: unknown;
 };
 
-export function useBrands(): SectionsQueryResult {
-  const [data, setData] = useState<CarApiItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+function useSectionsById(
+  id: string,
+  load: (id: string) => Promise<CarApiItem[]>,
+  getCached: (id: string) => CarApiItem[] | undefined
+): SectionsQueryResult {
+  const cached = id ? getCached(id) : undefined;
+  const [data, setData] = useState<CarApiItem[]>(cached ?? []);
+  const [loadedId, setLoadedId] = useState<string | null>(cached ? id : null);
   const [error, setError] = useState<unknown>(null);
 
-  useEffect(() => {
-    let cancelled = false;
-    setIsLoading(true);
+  const isLoading = Boolean(id) && loadedId !== id;
 
-    loadBrands()
+  useEffect(() => {
+    if (!id) {
+      setData([]);
+      setLoadedId(null);
+      setError(null);
+      return;
+    }
+
+    const cachedNow = getCached(id);
+    if (cachedNow) {
+      setData(cachedNow);
+      setLoadedId(id);
+      setError(null);
+      return;
+    }
+
+    let cancelled = false;
+
+    load(id)
       .then((result) => {
         if (!cancelled) {
           setData(result);
+          setLoadedId(id);
           setError(null);
         }
       })
       .catch((err) => {
-        if (!cancelled) setError(err);
-      })
-      .finally(() => {
-        if (!cancelled) setIsLoading(false);
+        if (!cancelled) {
+          setError(err);
+          setLoadedId(id);
+        }
       });
 
     return () => {
       cancelled = true;
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- load/getCached are module-level
+  }, [id]);
 
-  return { data, isLoading, error };
+  const displayData = loadedId === id ? data : [];
+
+  return { data: displayData, isLoading, error };
+}
+
+function getBrandsCached() {
+  return brandsCache.data ?? undefined;
+}
+
+function getModelsCached(id: string) {
+  return modelsCache.get(id);
+}
+
+function getGenerationsCached(id: string) {
+  return generationsCache.get(id);
+}
+
+export function useBrands(): SectionsQueryResult {
+  return useSectionsById("brands", loadBrands, getBrandsCached);
 }
 
 export function useModels(brandId: string): SectionsQueryResult {
-  const [data, setData] = useState<CarApiItem[]>([]);
-  const [isLoading, setIsLoading] = useState(Boolean(brandId));
-  const [error, setError] = useState<unknown>(null);
-
-  useEffect(() => {
-    if (!brandId) {
-      setData([]);
-      setIsLoading(false);
-      setError(null);
-      return;
-    }
-
-    let cancelled = false;
-    setIsLoading(true);
-
-    loadModels(brandId)
-      .then((result) => {
-        if (!cancelled) {
-          setData(result);
-          setError(null);
-        }
-      })
-      .catch((err) => {
-        if (!cancelled) setError(err);
-      })
-      .finally(() => {
-        if (!cancelled) setIsLoading(false);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [brandId]);
-
-  return { data, isLoading, error };
+  return useSectionsById(brandId, loadModels, getModelsCached);
 }
 
 export function useGenerations(modelId: string): SectionsQueryResult {
-  const [data, setData] = useState<CarApiItem[]>([]);
-  const [isLoading, setIsLoading] = useState(Boolean(modelId));
-  const [error, setError] = useState<unknown>(null);
-
-  useEffect(() => {
-    if (!modelId) {
-      setData([]);
-      setIsLoading(false);
-      setError(null);
-      return;
-    }
-
-    let cancelled = false;
-    setIsLoading(true);
-
-    loadGenerations(modelId)
-      .then((result) => {
-        if (!cancelled) {
-          setData(result);
-          setError(null);
-        }
-      })
-      .catch((err) => {
-        if (!cancelled) setError(err);
-      })
-      .finally(() => {
-        if (!cancelled) setIsLoading(false);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [modelId]);
-
-  return { data, isLoading, error };
+  return useSectionsById(modelId, loadGenerations, getGenerationsCached);
 }

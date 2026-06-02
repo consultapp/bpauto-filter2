@@ -21,3 +21,14 @@
   color: var(--second-color-normal);
   text-align: center;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0;
+}
+
+.centerLoader {
+  margin-right: 0;
+}
