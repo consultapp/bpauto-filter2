@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import { API_SEARCH_BY_ARTICUL_URL } from "@/fixtures/consts";
 import SearchContent from "../DroppingWindow/DroppingWindow";
@@ -17,18 +17,6 @@ function checkAA(str: string) {
   return str;
 }
 
-function debounced(cb: (value: string) => void) {
-  let timer: number | null = null;
-  return (value: string) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      cb(value);
-    }, 400);
-  };
-}
-
 type Result = { NAME: string; DETAIL_PAGE_URL: string; QUANTITY: string };
 
 export default function TabArticul() {
@@ -36,36 +24,27 @@ export default function TabArticul() {
   const [loading, setLoading] = useState<boolean>(false);
   const [results, setResults] = useState<Result[] | null>(null);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchSearch = useCallback(
-    debounced((s: string) => {
-      const searchUrl = new URL(API_SEARCH_BY_ARTICUL_URL);
-      searchUrl.searchParams.set("s", s);
-
-      if (s.length > 2) {
-        setLoading(true);
-        fetch(searchUrl, {
-          method: "GET",
-        })
-          .then((data) => data.json())
-          .then((data) => {
-            setResults(data);
-            setLoading(false);
-          })
-          .catch((e) => {
-            console.error("Fetch error.", e);
-            setLoading(false);
-          });
-      } else {
-        setResults(null);
-      }
-    }),
-    [setValue, setLoading]
-  );
-
   useEffect(() => {
-    if (value) fetchSearch(value);
-  }, [fetchSearch, value]);
+    if (value.length <= 2) return;
+
+    const timer = window.setTimeout(() => {
+      const searchUrl = new URL(API_SEARCH_BY_ARTICUL_URL);
+      searchUrl.searchParams.set("s", value);
+
+      fetch(searchUrl, { method: "GET" })
+        .then((data) => data.json())
+        .then((data) => {
+          setResults(data);
+          setLoading(false);
+        })
+        .catch((e) => {
+          console.error("Fetch error.", e);
+          setLoading(false);
+        });
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [value]);
 
   return (
     <>
@@ -79,7 +58,12 @@ export default function TabArticul() {
           svg={loading ? <LoaderSvg /> : <></>}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const str = checkAA(e.target.value);
-            // setResults(null);
+            if (str.length <= 2) {
+              setResults(null);
+              setLoading(false);
+            } else {
+              setLoading(true);
+            }
             setValue(str);
           }}
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
