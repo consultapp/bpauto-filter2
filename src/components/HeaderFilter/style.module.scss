@@ -6,8 +6,18 @@
 
   margin-bottom: 15px;
 
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 }
 
 .filter {
@@ -17,8 +27,12 @@
   min-height: 100px;
 }
 
-@media screen and (max-width: "767px") {
+@media screen and (max-width: '767px') {
   .logo {
     display: none;
+  }
+
+  .filter {
+    grid-template-rows: auto 1fr;
   }
 }

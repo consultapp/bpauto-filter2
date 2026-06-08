@@ -1,6 +1,6 @@
-import HeaderFilter from "./components/HeaderFilter/HeaderFilter";
-import InitialDataLoad from "./components/InitialDataLoad/InitialDataLoad.tsx";
-import { FilterProvider } from "@/context/FilterProvider";
+import HeaderFilter from './components/HeaderFilter/HeaderFilter'
+import InitialDataLoad from './components/InitialDataLoad/InitialDataLoad.tsx'
+import { FilterProvider } from '@/context/FilterProvider'
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <InitialDataLoad />
       <HeaderFilter />
     </FilterProvider>
-  );
+  )
 }
 
 export default App;

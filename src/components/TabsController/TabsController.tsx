@@ -1,13 +1,13 @@
-import { useSetTab, useTab } from "@/context/filterHooks";
-import classNames from "classnames";
-import styles from "./style.module.scss";
-import Rating from "../Rating/Rating";
+import { useSetTab, useTab } from '@/context/filterHooks'
+import classNames from 'classnames'
+import styles from './style.module.scss'
+import Rating from '../Rating/Rating'
 
-const tabs = ["По параметрам", "По артикулу"];
+const tabs = ['По параметрам', 'По номеру']
 
 export default function TabsController() {
-  const tab = useTab();
-  const setTab = useSetTab();
+  const tab = useTab()
+  const setTab = useSetTab()
 
   return (
     <div className={styles.tabs}>
@@ -24,5 +24,5 @@ export default function TabsController() {
         <Rating />
       </div>
     </div>
-  );
+  )
 }
