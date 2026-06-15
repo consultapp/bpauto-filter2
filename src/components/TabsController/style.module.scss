@@ -10,13 +10,18 @@
   gap: 10px;
 
   @include phone {
-    grid-template-columns: auto auto;
+    display: block;
     width: 100%;
   }
 }
 
 .tablist {
   display: contents;
+
+  @include phone {
+    display: flex;
+    width: 100%;
+  }
 }
 
 .tab {
@@ -35,11 +40,10 @@
   cursor: pointer;
 
   @include phone {
+    flex: 1;
     padding: 10px;
     text-align: center;
-
     line-height: normal;
-    align-content: center;
   }
 }
 
