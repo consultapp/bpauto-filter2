@@ -26,7 +26,7 @@ export default function HeaderFilter() {
 
   return (
     <RootContext.Provider value={scrollToRoot}>
-      <header className={styles.root} ref={root}>
+      <section className={styles.root} ref={root} aria-label="Поиск запчастей">
         <div className={styles.logo}>
           <a href="/">
             <img src={isNg ? LogoNg : Logo} alt="BP Auto" />
@@ -36,7 +36,7 @@ export default function HeaderFilter() {
           <TabsController />
           <SelectedTab />
         </div>
-      </header>
+      </section>
     </RootContext.Provider>
   )
 }
