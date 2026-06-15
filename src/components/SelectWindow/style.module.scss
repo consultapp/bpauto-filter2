@@ -1,5 +1,11 @@
+@use '../../styles/breakpoints' as *;
+
 .grid {
   columns: 135px auto;
+
+  @include phone {
+    columns: 1;
+  }
 }
 
 .anchor {

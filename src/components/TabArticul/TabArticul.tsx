@@ -5,6 +5,9 @@ import SearchContent from '../DroppingWindow/DroppingWindow'
 import CustomInput from '../ui/CustomInput/CustomInput'
 import classNames from 'classnames'
 import LoaderSvg from '../ui/LoaderSvg/LoaderSvg'
+import { useTab } from '@/context/filterHooks'
+
+const ARTICUL_INPUT_ID = 'filter-articul-input'
 
 type Result = {
   ID: string
@@ -22,6 +25,7 @@ const normalizeResults = (data: unknown): Result[] => {
 const MIN_QUERY_LENGTH = 3
 
 export default function TabArticul() {
+  const tab = useTab()
   const [value, setValue] = useState('')
   const [loading, setLoading] = useState<boolean>(false)
   const [results, setResults] = useState<Result[] | null>(null)
@@ -71,22 +75,40 @@ export default function TabArticul() {
     setValue(str)
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (results?.length) {
+      location.href = results[0].DETAIL_PAGE_URL
+    }
+  }
+
   return (
     <>
       <div className={styles.root}>
-        <CustomInput
-          className={styles.input}
-          placeholder="AA000983, 8R0 827 272 A, A2108858301"
-          autoFocus={true}
-          value={value}
-          max={40}
-          svg={loading ? <LoaderSvg /> : <></>}
-          onChange={handleChange}
-          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-            if (results?.length && e.key === 'Enter')
-              location.href = results[0].DETAIL_PAGE_URL
-          }}
-        />
+        <form
+          role="search"
+          className={styles.search}
+          onSubmit={handleSubmit}
+        >
+          <label htmlFor={ARTICUL_INPUT_ID} className={styles.visuallyHidden}>
+            Артикул или номер детали
+          </label>
+          <CustomInput
+            id={ARTICUL_INPUT_ID}
+            className={styles.input}
+            placeholder="AA000983, 8R0 827 272 A, A2108858301"
+            autoFocus={tab === 1}
+            value={value}
+            max={40}
+            svg={loading ? <LoaderSvg /> : <></>}
+            onChange={handleChange}
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              if (results?.length && e.key === 'Enter') {
+                location.href = results[0].DETAIL_PAGE_URL
+              }
+            }}
+          />
+        </form>
         <p className={styles.mobileHint}>
           Номер, OEM, артикул можно указывать с пробелами и дефисами, например:
           8R0 827 272 A, AA000983, 52119-400
