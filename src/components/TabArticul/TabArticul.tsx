@@ -6,6 +6,7 @@ import CustomInput from '../ui/CustomInput/CustomInput'
 import classNames from 'classnames'
 import LoaderSvg from '../ui/LoaderSvg/LoaderSvg'
 import { useTab } from '@/context/filterHooks'
+import { getArticulHighlightParts } from '@/functions/highlightArticul'
 
 const ARTICUL_INPUT_ID = 'filter-articul-input'
 
@@ -141,23 +142,30 @@ export default function TabArticul() {
             !loading &&
             !networkError &&
             Boolean(results?.length) &&
-            results?.map((result: Result, i: number) => {
-              const { NAME, DETAIL_PAGE_URL, QUANTITY } = result
+            results?.map((result: Result) => {
+              const { ID, NAME, DETAIL_PAGE_URL, QUANTITY } = result
+              const highlight = getArticulHighlightParts(NAME, value)
+
               return (
                 <a
-                  key={i}
+                  key={ID}
                   className={classNames(
                     styles.link,
                     !parseInt(QUANTITY) && styles.red
                   )}
                   href={DETAIL_PAGE_URL}
-                  dangerouslySetInnerHTML={{
-                    __html: `${NAME.replace(
-                      value,
-                      `<strong>${value}</strong>`
-                    )} <strong>(${QUANTITY}шт.)</strong>`
-                  }}
-                ></a>
+                >
+                  {highlight ? (
+                    <>
+                      {highlight.before}
+                      <strong>{highlight.match}</strong>
+                      {highlight.after}
+                    </>
+                  ) : (
+                    NAME
+                  )}{' '}
+                  <strong>({QUANTITY}шт.)</strong>
+                </a>
               )
             })}
         </SearchContent>
