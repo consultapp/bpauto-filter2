@@ -1,7 +1,9 @@
+@use '../../styles/breakpoints' as *;
+
 .root {
   // background-color: white;
 
-  @media screen and (max-width: '767px') {
+  @include phone {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -9,7 +11,7 @@
 }
 
 .input {
-  @media screen and (max-width: '767px') {
+  @include phone {
     flex-shrink: 0;
   }
 }
@@ -17,7 +19,7 @@
 .mobileHint {
   display: none;
 
-  @media screen and (max-width: '767px') {
+  @include phone {
     display: flex;
     align-items: center;
     flex: 1;

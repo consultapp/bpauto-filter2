@@ -17,11 +17,11 @@ export default function Rating() {
   const { avito, yandex } = ratingData
   return (
     <div className={styles.root}>
-      <a href={avito.link} target="_blank">
+      <a href={avito.link} target="_blank" rel="noopener noreferrer">
         <Star fill="currentColor" size={'18px'} />
         <span>{avito.rating}&nbsp;Avito</span>
       </a>
-      <a href={yandex.link} target="_blank">
+      <a href={yandex.link} target="_blank" rel="noopener noreferrer">
         <Star fill="currentColor" size={'18px'} />
         <span>
           {yandex.rating}&nbsp;

@@ -9,7 +9,7 @@ import { createContext, useCallback, useMemo, useRef } from 'react'
 
 export const RootContext = createContext(() => {})
 export default function HeaderFilter() {
-  const root = useRef<HTMLDivElement>(null)
+  const root = useRef<HTMLElement>(null)
 
   const isNg = useMemo(() => {
     const today = new Date()
@@ -26,17 +26,17 @@ export default function HeaderFilter() {
 
   return (
     <RootContext.Provider value={scrollToRoot}>
-      <div className={styles.root} ref={root}>
+      <header className={styles.root} ref={root}>
         <div className={styles.logo}>
           <a href="/">
-            <img src={isNg ? LogoNg : Logo} alt="logotype" />
+            <img src={isNg ? LogoNg : Logo} alt="BP Auto" />
           </a>
         </div>
         <div className={styles.filter}>
           <TabsController />
           <SelectedTab />
         </div>
-      </div>
+      </header>
     </RootContext.Provider>
   )
 }

@@ -1,22 +1,26 @@
+@use '../../styles/breakpoints' as *;
+
 .tabs {
   position: relative;
+}
 
+.tablist {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: max-content;
 
   gap: 10px;
-  @media screen and (max-width: "767px") {
-    & {
-      grid-template-columns: auto auto auto;
-      width: 100%;
-    }
+
+  @include phone {
+    grid-template-columns: auto auto;
+    width: 100%;
   }
 }
 
 .tab {
   color: var(--main-bg-color);
 
+  font-family: inherit;
   font-weight: 600;
   text-align: left;
   font-size: 15px;
@@ -24,17 +28,16 @@
   padding: 0 22px;
   background: #f4f6f8;
   margin: 0;
+  border: 0;
 
   cursor: pointer;
 
-  @media screen and (max-width: "767px") {
-    & {
-      padding: 10px;
-      text-align: center;
+  @include phone {
+    padding: 10px;
+    text-align: center;
 
-      line-height: normal;
-      align-content: center;
-    }
+    line-height: normal;
+    align-content: center;
   }
 }
 
@@ -48,9 +51,7 @@
   height: 100%;
   align-content: center;
 
-  @media screen and (max-width: "767px") {
-    & {
-      display: none;
-    }
+  @include phone {
+    display: none;
   }
 }

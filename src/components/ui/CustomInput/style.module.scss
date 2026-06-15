@@ -1,3 +1,5 @@
+@use '../../../styles/breakpoints' as *;
+
 .field {
   cursor: pointer;
   align-items: center;
@@ -12,7 +14,7 @@
   border-right-color: currentcolor;
   border-right: 1px solid rgba(121, 121, 121, 0.4);
 
-  @media screen and (max-width: "767px") {
+  @include phone {
     &:not(:last-child) {
       border-bottom-width: 0px;
       border-bottom-style: none;

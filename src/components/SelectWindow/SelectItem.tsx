@@ -7,7 +7,8 @@ type Props = { item: CarApiItem; setCar: () => void }
 export default function SelectItem({ item, setCar }: Props) {
   const scrollToRoot = useContext(RootContext)
   return (
-    <div
+    <button
+      type="button"
       className={styles.anchor}
       onClick={(e) => {
         e.preventDefault()
@@ -16,6 +17,6 @@ export default function SelectItem({ item, setCar }: Props) {
       }}
     >
       {item.name}
-    </div>
+    </button>
   )
 }

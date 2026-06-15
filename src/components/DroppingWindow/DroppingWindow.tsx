@@ -6,7 +6,7 @@ type Props = {
 
 export default function DroppingWindow({ children }: Props) {
   return (
-    <div style={{ position: "relative" }}>
+    <div className={styles.wrapper}>
       <div className={styles.root}>{children}</div>
     </div>
   );

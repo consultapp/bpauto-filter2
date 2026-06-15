@@ -8,9 +8,23 @@ export default function SelectedTab() {
   const tab = useTab();
   return (
     <div className={styles.root}>
-      {tab === 0 && <TabByCar />}
+      <section
+        role="tabpanel"
+        id="filter-tabpanel-0"
+        aria-labelledby="filter-tab-0"
+        hidden={tab !== 0}
+      >
+        <TabByCar />
+      </section>
       {/* {tab === 1 && <TabYandexSearch />} */}
-      {tab === 1 && <TabArticul />}
+      <section
+        role="tabpanel"
+        id="filter-tabpanel-1"
+        aria-labelledby="filter-tab-1"
+        hidden={tab !== 1}
+      >
+        <TabArticul />
+      </section>
     </div>
   );
 }
