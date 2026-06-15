@@ -4,7 +4,6 @@ import { useLayoutEffect, useRef } from 'react'
 
 type Props = {
   placeholder?: string
-  id?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   onClick?: (e: React.PointerEvent<HTMLDivElement>) => void
@@ -20,7 +19,6 @@ type Props = {
 function CustomInput({
   className,
   placeholder,
-  id,
   onChange,
   onKeyDown,
   onClick,
@@ -55,8 +53,6 @@ function CustomInput({
           className={classNames(styles.input)}
           disabled={disabled}
           type="text"
-          // autoFocus={autoFocus}
-          id={id}
           placeholder={placeholder}
           onChange={onChange}
           value={value}

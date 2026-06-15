@@ -1,4 +1,4 @@
-export const SITE_URL = "https://bpauto.ru";
+const SITE_URL = "https://bpauto.ru";
 export const API_URL = SITE_URL + "/api";
 
 // APIs
@@ -12,7 +12,6 @@ export const CAR_TAB_STATES = {
   generation: "generation",
 } as const;
 
-//
 export const META_NAMES = [
   "brandSectionCode",
   "modelSectionCode",

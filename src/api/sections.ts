@@ -23,7 +23,7 @@ const modelsPending = new Map<string, Promise<CarApiItem[]>>();
 const generationsCache = new Map<string, CarApiItem[]>();
 const generationsPending = new Map<string, Promise<CarApiItem[]>>();
 
-export function loadBrands(): Promise<CarApiItem[]> {
+function loadBrands(): Promise<CarApiItem[]> {
   if (brandsCache.data) return Promise.resolve(brandsCache.data);
   if (!brandsCache.promise) {
     brandsCache.promise = fetchSections("/getSections.php?sec_type=1").then(
@@ -36,7 +36,7 @@ export function loadBrands(): Promise<CarApiItem[]> {
   return brandsCache.promise;
 }
 
-export function loadModels(brandId: string): Promise<CarApiItem[]> {
+function loadModels(brandId: string): Promise<CarApiItem[]> {
   const cached = modelsCache.get(brandId);
   if (cached) return Promise.resolve(cached);
 
@@ -55,7 +55,7 @@ export function loadModels(brandId: string): Promise<CarApiItem[]> {
   return promise;
 }
 
-export function loadGenerations(modelId: string): Promise<CarApiItem[]> {
+function loadGenerations(modelId: string): Promise<CarApiItem[]> {
   const cached = generationsCache.get(modelId);
   if (cached) return Promise.resolve(cached);
 
@@ -74,7 +74,7 @@ export function loadGenerations(modelId: string): Promise<CarApiItem[]> {
   return promise;
 }
 
-export type SectionsQueryResult = {
+type SectionsQueryResult = {
   data: CarApiItem[];
   isLoading: boolean;
   error: unknown;

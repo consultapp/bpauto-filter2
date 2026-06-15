@@ -1,7 +1,6 @@
 import { useTab } from "@/context/filterHooks";
 import TabByCar from "../TabByCar/TabByCar";
 import styles from "./style.module.scss";
-// import TabYandexSearch from "../TabYandexSearch/TabYandexSearch";
 import TabArticul from "../TabArticul/TabArticul";
 
 export default function SelectedTab() {
@@ -16,7 +15,6 @@ export default function SelectedTab() {
       >
         <TabByCar />
       </section>
-      {/* {tab === 1 && <TabYandexSearch />} */}
       <section
         role="tabpanel"
         id="filter-tabpanel-1"

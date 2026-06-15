@@ -6,12 +6,3 @@ interface CarApiItem {
   parentId: string | null;
   url: string;
 }
-
-declare interface Window {
-  SOCIAL_RATING_FILTER: {
-    [key in "avito" | "yandex"]: {
-      rating: string;
-      link: string;
-    };
-  };
-}
