@@ -22,6 +22,8 @@
 
 .filter {
   display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0;
   flex-grow: 1;
 
   min-height: 100px;
@@ -30,9 +32,5 @@
 @include phone {
   .logo {
     display: none;
-  }
-
-  .filter {
-    grid-template-rows: auto 1fr;
   }
 }
